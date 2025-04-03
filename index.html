@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NLP Notes & Assignments</title>
+</head>
+<body>
+    <h2>Upload Your Notes</h2>
+    <input type="text" id="noteTitle" placeholder="Note Title"><br><br>
+    <input type="text" id="noteLink" placeholder="Paste Google Drive Link"><br><br>
+    <button onclick="saveNote()">Save Note</button>
+
+    <h3>Uploaded Notes</h3>
+    <ul id="notesList"></ul>
+
+    <h2>Upload Your Assignment</h2>
+    <input type="text" id="name" placeholder="Name"><br><br>
+    <input type="text" id="usn" placeholder="USN"><br><br>
+    <input type="text" id="subjectCode" placeholder="Subject Code"><br><br>
+    <input type="text" id="fileLink" placeholder="Paste Google Drive Link"><br><br>
+    <button onclick="saveAssignment()">Save Assignment</button>
+
+    <h3>Uploaded Assignments</h3>
+    <ul id="assignmentList"></ul>
+
+    <script>
+        function saveNote() {
+            let noteTitle = document.getElementById("noteTitle").value;
+            let noteLink = document.getElementById("noteLink").value;
+
+            if (!noteTitle || !noteLink) {
+                alert("Please fill all fields.");
+                return;
+            }
+
+            let notes = JSON.parse(localStorage.getItem("notes")) || [];
+            notes.push({ noteTitle, noteLink });
+            localStorage.setItem("notes", JSON.stringify(notes));
+
+            displayNotes();
+        }
+
+        function displayNotes() {
+            let notes = JSON.parse(localStorage.getItem("notes")) || [];
+            let list = document.getElementById("notesList");
+            list.innerHTML = "";
+
+            notes.forEach((item, index) => {
+                let listItem = document.createElement("li");
+                listItem.innerHTML = `${item.noteTitle} 
+                    <a href="${item.noteLink}" target="_blank">View</a> 
+                    <button onclick="deleteNote(${index})">Delete</button>`;
+                list.appendChild(listItem);
+            });
+        }
+
+        function deleteNote(index) {
+            let notes = JSON.parse(localStorage.getItem("notes")) || [];
+            notes.splice(index, 1);
+            localStorage.setItem("notes", JSON.stringify(notes));
+            displayNotes();
+        }
+
+        function saveAssignment() {
+            let name = document.getElementById("name").value;
+            let usn = document.getElementById("usn").value;
+            let subjectCode = document.getElementById("subjectCode").value;
+            let fileLink = document.getElementById("fileLink").value;
+
+            if (!name || !usn || !subjectCode || !fileLink) {
+                alert("Please fill all fields.");
+                return;
+            }
+
+            let assignments = JSON.parse(localStorage.getItem("assignments")) || [];
+            assignments.push({ name, usn, subjectCode, fileLink });
+            localStorage.setItem("assignments", JSON.stringify(assignments));
+
+            displayAssignments();
+        }
+
+        function displayAssignments() {
+            let assignments = JSON.parse(localStorage.getItem("assignments")) || [];
+            let list = document.getElementById("assignmentList");
+            list.innerHTML = "";
+
+            assignments.forEach((item, index) => {
+                let listItem = document.createElement("li");
+                listItem.innerHTML = `${item.name} | ${item.usn} | ${item.subjectCode} 
+                    <a href="${item.fileLink}" target="_blank">View</a> 
+                    <button onclick="deleteAssignment(${index})">Delete</button>`;
+                list.appendChild(listItem);
+            });
+        }
+
+        function deleteAssignment(index) {
+            let assignments = JSON.parse(localStorage.getItem("assignments")) || [];
+            assignments.splice(index, 1);
+            localStorage.setItem("assignments", JSON.stringify(assignments));
+            displayAssignments();
+        }
+
+        displayNotes();
+        displayAssignments();
+    </script>
+</body>
+</html>
