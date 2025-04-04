@@ -3,139 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NLP Notes & Assignments</title>
-    <link rel="stylesheet" href="style.css">
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #212121;
-            color: #ffffff;
-            text-align: center;
-            padding: 20px;
-        }
-        h1, h2, h3 {
-            color: #3498db;
-        }
-        input, button {
-            margin: 5px;
-            padding: 10px;
-        }
-        button {
-            background-color: #2ECC71;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #27AE60;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            background-color: #2C3E50;
-            margin: 5px;
-            padding: 10px;
-            border-radius: 5px;
-        }
-    </style>
+    <title>Upload Portal</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Natural Language Processing (NLP)</h1>
-    <h3>Professor: Mrs. R. Geetha</h3>
-    <h3>Developed by: Rajesh</h3>
 
-    <h2>Upload Your Notes</h2>
-    <input type="text" id="noteTitle" placeholder="Note Title"><br>
-    <input type="text" id="noteLink" placeholder="Paste Google Drive Link"><br>
-    <button onclick="saveNote()">Save Note</button>
+    <!-- User Login Panel -->
+    <div class="user-info">
+        <h3>Welcome, <span id="user-email">Professor</span></h3>
+    </div>
 
-    <h3>Uploaded Notes</h3>
-    <ul id="notesList"></ul>
+    <!-- Notification System -->
+    <div class="notification-box" id="notification-box">
+        New Upload: <span id="notification-text"></span>
+    </div>
 
-    <h2>Upload Your Assignment</h2>
-    <input type="text" id="name" placeholder="Name"><br>
-    <input type="text" id="usn" placeholder="USN"><br>
-    <input type="text" id="subjectCode" placeholder="Subject Code"><br>
-    <input type="text" id="fileLink" placeholder="Paste Google Drive Link"><br>
-    <button onclick="saveAssignment()">Save Assignment</button>
+    <!-- Upload Sections -->
+    <div class="container">
+        <h1>Upload Portal</h1>
 
-    <h3>Uploaded Assignments</h3>
-    <ul id="assignmentList"></ul>
+        <div class="upload-sections">
+            <!-- Notes Upload -->
+            <div class="upload-box">
+                <h3>Upload Notes</h3>
+                <input type="file" id="notes-upload">
+                <button onclick="uploadFile('notes')">Upload</button>
+            </div>
 
-    <script>
-        function saveNote() {
-            let noteTitle = document.getElementById("noteTitle").value;
-            let noteLink = document.getElementById("noteLink").value;
-            if (!noteTitle || !noteLink) {
-                alert("Please fill all fields.");
-                return;
-            }
-            let notes = JSON.parse(localStorage.getItem("notes")) || [];
-            notes.push({ noteTitle, noteLink });
-            localStorage.setItem("notes", JSON.stringify(notes));
-            displayNotes();
-        }
+            <!-- Assignments Upload -->
+            <div class="upload-box">
+                <h3>Upload Assignments</h3>
+                <input type="file" id="assignments-upload">
+                <button onclick="uploadFile('assignments')">Upload</button>
+            </div>
+        </div>
+    </div>
 
-        function displayNotes() {
-            let notes = JSON.parse(localStorage.getItem("notes")) || [];
-            let list = document.getElementById("notesList");
-            list.innerHTML = "";
-            notes.forEach((item, index) => {
-                let listItem = document.createElement("li");
-                listItem.innerHTML = `${item.noteTitle} 
-                    <a href="${item.noteLink}" target="_blank">View</a> 
-                    <button onclick="deleteNote(${index})">Delete</button>`;
-                list.appendChild(listItem);
-            });
-        }
+    <!-- Updates Section -->
+    <div class="update-section">
+        <h3>Latest Updates</h3>
+        <ul id="updates-list">
+            <li>No updates yet</li>
+        </ul>
+    </div>
 
-        function deleteNote(index) {
-            let notes = JSON.parse(localStorage.getItem("notes")) || [];
-            notes.splice(index, 1);
-            localStorage.setItem("notes", JSON.stringify(notes));
-            displayNotes();
-        }
-
-        function saveAssignment() {
-            let name = document.getElementById("name").value;
-            let usn = document.getElementById("usn").value;
-            let subjectCode = document.getElementById("subjectCode").value;
-            let fileLink = document.getElementById("fileLink").value;
-            if (!name || !usn || !subjectCode || !fileLink) {
-                alert("Please fill all fields.");
-                return;
-            }
-            let assignments = JSON.parse(localStorage.getItem("assignments")) || [];
-            assignments.push({ name, usn, subjectCode, fileLink });
-            localStorage.setItem("assignments", JSON.stringify(assignments));
-            displayAssignments();
-        }
-
-        function displayAssignments() {
-            let assignments = JSON.parse(localStorage.getItem("assignments")) || [];
-            let list = document.getElementById("assignmentList");
-            list.innerHTML = "";
-            assignments.forEach((item, index) => {
-                let listItem = document.createElement("li");
-                listItem.innerHTML = `${item.name} | ${item.usn} | ${item.subjectCode} 
-                    <a href="${item.fileLink}" target="_blank">View</a> 
-                    <button onclick="deleteAssignment(${index})">Delete</button>`;
-                list.appendChild(listItem);
-            });
-        }
-
-        function deleteAssignment(index) {
-            let assignments = JSON.parse(localStorage.getItem("assignments")) || [];
-            assignments.splice(index, 1);
-            localStorage.setItem("assignments", JSON.stringify(assignments));
-            displayAssignments();
-        }
-
-        displayNotes();
-        displayAssignments();
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
