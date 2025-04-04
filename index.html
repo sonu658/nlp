@@ -1,52 +1,131 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Portal</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #212121;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+}
 
-    <!-- User Login Panel -->
-    <div class="user-info">
-        <h3>Welcome, <span id="user-email">Professor</span></h3>
-    </div>
+/* Header */
+header {
+    background-color: #3498db;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3);
+}
 
-    <!-- Notification System -->
-    <div class="notification-box" id="notification-box">
-        New Upload: <span id="notification-text"></span>
-    </div>
+header h1 {
+    color: #ffffff;
+    font-size: 24px;
+}
 
-    <!-- Upload Sections -->
-    <div class="container">
-        <h1>Upload Portal</h1>
+header h2 {
+    color: #ffcc00;
+    font-size: 20px;
+}
 
-        <div class="upload-sections">
-            <!-- Notes Upload -->
-            <div class="upload-box">
-                <h3>Upload Notes</h3>
-                <input type="file" id="notes-upload">
-                <button onclick="uploadFile('notes')">Upload</button>
-            </div>
+/* Container */
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: #2C3E50;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+}
 
-            <!-- Assignments Upload -->
-            <div class="upload-box">
-                <h3>Upload Assignments</h3>
-                <input type="file" id="assignments-upload">
-                <button onclick="uploadFile('assignments')">Upload</button>
-            </div>
-        </div>
-    </div>
+/* Input Fields */
+input {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
+}
 
-    <!-- Updates Section -->
-    <div class="update-section">
-        <h3>Latest Updates</h3>
-        <ul id="updates-list">
-            <li>No updates yet</li>
-        </ul>
-    </div>
+/* Buttons */
+button {
+    background-color: #2ECC71;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 10px;
+}
 
-    <script src="script.js"></script>
-</body>
-</html>
+button:hover {
+    background-color: #27AE60;
+}
+
+/* Notification System */
+.notification-box {
+    background: #ffcc00;
+    color: #2C3E50;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: none; /* Hidden initially */
+}
+
+/* Upload Sections */
+.upload-sections {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.upload-box {
+    background: #34495E;
+    padding: 15px;
+    border-radius: 10px;
+    width: 45%;
+    text-align: center;
+}
+
+.upload-box h3 {
+    color: #2ECC71;
+    margin-bottom: 10px;
+}
+
+/* Updates Section */
+.update-section {
+    background: #1ABC9C;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.update-section h3 {
+    color: #212121;
+    font-weight: bold;
+}
+
+/* User Login Panel */
+.user-info {
+    background: #2980B9;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.user-info h3 {
+    color: #ffffff;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .upload-sections {
+        flex-direction: column;
+    }
+
+    .upload-box {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+}
