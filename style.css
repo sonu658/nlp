@@ -14,7 +14,7 @@ h1, h2, h3 {
 
 /* Container */
 .container {
-    max-width: 800px;
+    max-width: 900px;
     margin: auto;
     background: #2C3E50;
     padding: 20px;
@@ -58,9 +58,7 @@ li {
     margin: 5px;
     padding: 10px;
     border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding: 10px;
 }
 
 /* Links */
@@ -72,4 +70,73 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+/* Notification System */
+.notification-box {
+    background: #ffcc00;
+    color: #2C3E50;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: none; /* Hidden initially, shown dynamically */
+}
+
+/* Separate Upload Views */
+.upload-sections {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.upload-box {
+    background: #34495E;
+    padding: 15px;
+    border-radius: 10px;
+    width: 45%;
+    text-align: center;
+}
+
+.upload-box h3 {
+    color: #2ECC71;
+    margin-bottom: 10px;
+}
+
+/* Updates Section */
+.update-section {
+    background: #1ABC9C;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.update-section h3 {
+    color: #212121;
+    font-weight: bold;
+}
+
+/* User Login Panel */
+.user-info {
+    background: #2980B9;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.user-info h3 {
+    color: #ffffff;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .upload-sections {
+        flex-direction: column;
+    }
+
+    .upload-box {
+        width: 100%;
+        margin-bottom: 15px;
+    }
 }
